@@ -16,7 +16,12 @@ class Wardrob
   def get_suitable_clothing(temperature)
     suitable_clothes = []
     @collection.each do |clothing|
-      suitable_clothes << clothing if temperature.between?(clothing.max_temp, clothing.min_temp)
+      if temperature.between?(clothing.max_temp, clothing.min_temp)
+        suitable_clothes << clothing
+      elsif temperature > 40 || temperature < -20
+        abort "nothing will help you. You will die"
+      end
+
     end
     suitable_clothes
   end
